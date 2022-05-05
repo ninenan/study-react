@@ -1,2 +1,2 @@
 # study-react
-studyr eact
+study react

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Hello jsx</title>
+    <title>Hello Function Component</title>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
@@ -19,19 +19,13 @@
     <script type="text/babel">
       const container = document.getElementById("root");
       const root = ReactDOM.createRoot(container);
-      const list = ["apple", "banana", "origin"];
 
-      function MyApp() {
-        return (
-          <ul>
-            {list.map((item) => {
-              return <li key={item}>{item}</li>;
-            })}
-          </ul>
-        );
+      function FunComponent() {
+        console.log(this); // this 指向 undefined，因为 babel 开启了严格模式
+        return <div>我是函数式组件</div>;
       }
 
-      root.render(<MyApp />);
+      root.render(<FunComponent />);
     </script>
   </body>
 </html>
