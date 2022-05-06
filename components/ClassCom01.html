@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello Class Component</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      .title {
+        color: burlywood;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+
+      // 函数组件适用于复杂组件（有 state）
+      class MyComponent extends React.Component {
+        // render 放在 MyComponent 的原型对象上，供实例使用
+        render() {
+          // this -> MyComponent 组件的实例对象
+          console.log("this :>> ", this);
+          return <div>Hello Class Component</div>;
+        }
+      }
+
+      root.render(<MyComponent />);
+    </script>
+  </body>
+</html>

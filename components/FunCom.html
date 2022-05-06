@@ -20,6 +20,8 @@
       const container = document.getElementById("root");
       const root = ReactDOM.createRoot(container);
 
+      // 函数组件适用于简单组件（无 state）
+      // 目前来说 更加倾向于适用函数组件（具体的跟着项目走）
       function FunComponent() {
         console.log(this); // this 指向 undefined，因为 babel 开启了严格模式
         return <div>我是函数式组件</div>;
