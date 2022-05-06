@@ -30,7 +30,7 @@
 
         handleChangeState() {
           const { isShow } = this.state;
-          this.setState({ isShow: !isShow }); // 状态需要通过 setState 来修改
+          this.setState((state) => ({ isShow: !isShow, name: "NNN" })); // 状态需要通过 setState 来修改
         }
 
         render() {
