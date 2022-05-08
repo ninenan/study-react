@@ -26,26 +26,29 @@
       const root = ReactDOM.createRoot(container);
 
       class MyComponent extends React.Component {
-        usernameRef = React.createRef()
-        passwordRef = React.createRef()
+        usernameRef = React.createRef();
+        passwordRef = React.createRef();
 
         handleSubmit(event) {
-          event.preventDefault() // 组织默认事件
-          const { usernameRef, passwordRef } = this
+          event.preventDefault(); // 组织默认事件
+          const { usernameRef, passwordRef } = this;
 
-          alert(`用户名：${usernameRef.current.value},密码：${passwordRef.current.value}`)
-
+          alert(
+            `用户名：${usernameRef.current.value},密码：${passwordRef.current.value}`
+          );
         }
 
         render() {
           return (
-          <>
-            <form onSubmit={(event) => this.handleSubmit(event)}>
-              用户名：<input type="text" ref={this.usernameRef} name="用户名" />
-              密码：<input ref={this.passwordRef} type="password" name="密码" />
-              <button type="text">登陆</button>
-            </form>
-          </>
+            <>
+              <form onSubmit={(event) => this.handleSubmit(event)}>
+                用户名：
+                <input type="text" ref={this.usernameRef} name="用户名" />
+                密码：
+                <input ref={this.passwordRef} type="password" name="密码" />
+                <button type="text">登陆</button>
+              </form>
+            </>
           );
         }
       }
