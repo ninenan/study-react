@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>字符串形式 ref</title>
+    <title>class 绑定函数回调形式 ref</title>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
@@ -22,21 +22,31 @@
   <body>
     <div id="root"></div>
     <script type="text/babel">
+      // https://zh-hans.reactjs.org/docs/refs-and-the-dom.html#gatsby-focus-wrapper
+      // 如果是使用的 回调函数 获取的 ref 的话，使用内联形式的方式获取(大多数情况下其实都是无关紧要的)
       const container = document.getElementById("root");
       const root = ReactDOM.createRoot(container);
 
       class MyComponent extends React.Component {
         showDate(name) {
-          const currentRef = this.refs[name];
+          const currentRef = this[name];
 
-          alert(currentRef.value)
+          alert(currentRef.value);
+        }
+
+        getFirstRef(currentRef) {
+          this.firstInputRef = currentRef;
+        }
+
+        getSecondRef(currentRef) {
+          this.secondInputRef = currentRef;
         }
 
         render() {
           return (
             <>
               <input
-                ref="firstInputRef"
+                ref={c => this.getFirstRef(c)}
                 type="text"
                 placeholder="点击按钮输出数据"
               />
@@ -45,7 +55,7 @@
               </button>
               <input
                 onBlur={() => this.showDate("secondInputRef")}
-                ref="secondInputRef"
+                ref={c => this.getSecondRef(c)}
                 type="text"
                 placeholder="blur输出数据"
               />

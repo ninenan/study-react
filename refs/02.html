@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>字符串形式 ref</title>
+    <title>内联回调形式 ref</title>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
@@ -27,16 +27,16 @@
 
       class MyComponent extends React.Component {
         showDate(name) {
-          const currentRef = this.refs[name];
+          const currentRef = this[name];
 
-          alert(currentRef.value)
+          alert(currentRef.value);
         }
 
         render() {
           return (
             <>
               <input
-                ref="firstInputRef"
+                ref={(currentNode) => (this.firstInputRef = currentNode)}
                 type="text"
                 placeholder="点击按钮输出数据"
               />
@@ -45,7 +45,7 @@
               </button>
               <input
                 onBlur={() => this.showDate("secondInputRef")}
-                ref="secondInputRef"
+                ref={(currentNode) => (this.secondInputRef = currentNode)}
                 type="text"
                 placeholder="blur输出数据"
               />

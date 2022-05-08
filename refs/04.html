@@ -1,7 +1,8 @@
+
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>字符串形式 ref</title>
+    <title>React.createRef 目前最佳实现</title>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
@@ -26,17 +27,21 @@
       const root = ReactDOM.createRoot(container);
 
       class MyComponent extends React.Component {
-        showDate(name) {
-          const currentRef = this.refs[name];
+        firstInputRef = React.createRef()
+        secondInputRef = React.createRef()
 
-          alert(currentRef.value)
+        showDate(name) {
+          const currentRef = this[name].current;
+
+          alert(currentRef.value);
         }
+
 
         render() {
           return (
             <>
               <input
-                ref="firstInputRef"
+                ref={this.firstInputRef}
                 type="text"
                 placeholder="点击按钮输出数据"
               />
@@ -45,7 +50,7 @@
               </button>
               <input
                 onBlur={() => this.showDate("secondInputRef")}
-                ref="secondInputRef"
+                ref={this.secondInputRef}
                 type="text"
                 placeholder="blur输出数据"
               />
