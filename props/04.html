@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello Class Component</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- development version -->
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+    <style>
+      .title {
+        color: burlywood;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      const person = { name: "NineNan", sex: 1, age: 18 };
+      const animal = "dog";
+
+      function bark() {
+        console.log("woof");
+      }
+
+      function MyComponent(props) {
+        const { person, animal, bark } = props;
+
+        return (
+          <>
+            <p>姓名：{person.name}</p>
+            <p>性别：{person.sex}</p>
+            <p>年龄：{person.age}</p>
+            <p onClick={() => bark()}>宠物：{animal}</p>
+          </>
+        );
+      }
+
+      MyComponent.propTypes = {
+        person: PropTypes.object,
+        animal: PropTypes.string.isRequired, // animal 是必要的字符串类型字段
+        bark: PropTypes.func,
+      };
+
+      MyComponent.defaultProps = {
+        person: {
+          name: "defaultName",
+          age: 20,
+          sex: 1,
+        },
+      };
+
+      root.render(<MyComponent person={person} animal={animal} bark={bark} />);
+    </script>
+  </body>
+</html>

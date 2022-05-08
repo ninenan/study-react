@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello Class Component</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      .title {
+        color: burlywood;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+
+      class MyComponent extends React.Component {
+        state = {
+          isShow: true,
+        };
+
+        handleChangeState = () => {
+          const { isShow } = this.state;
+          this.setState({ isShow: !isShow, name: "NNN001" }); // 状态需要通过 setState 来修改
+        };
+
+        render() {
+          const { isShow } = this.state;
+          return (
+            <div onClick={this.handleChangeState}>
+              hello Class {isShow ? "component" : "component01"}
+            </div>
+          );
+        }
+      }
+      root.render(<MyComponent />);
+    </script>
+  </body>
+</html>
