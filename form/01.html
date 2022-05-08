@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>React.createRef 目前最佳实现</title>
+    <title>非受控组件</title>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
@@ -26,33 +26,26 @@
       const root = ReactDOM.createRoot(container);
 
       class MyComponent extends React.Component {
-        firstInputRef = React.createRef()
-        secondInputRef = React.createRef()
+        usernameRef = React.createRef()
+        passwordRef = React.createRef()
 
-        showDate(name) {
-          const currentRef = this[name].current;
+        handleSubmit(event) {
+          event.preventDefault() // 组织默认事件
+          const { usernameRef, passwordRef } = this
 
-          alert(currentRef.value);
+          alert(`用户名：${usernameRef.current.value},密码：${passwordRef.current.value}`)
+
         }
 
         render() {
           return (
-            <>
-              <input
-                ref={this.firstInputRef}
-                type="text"
-                placeholder="点击按钮输出数据"
-              />
-              <button onClick={() => this.showDate("firstInputRef")}>
-                提示左侧数据
-              </button>
-              <input
-                onBlur={() => this.showDate("secondInputRef")}
-                ref={this.secondInputRef}
-                type="text"
-                placeholder="blur输出数据"
-              />
-            </>
+          <>
+            <form onSubmit={(event) => this.handleSubmit(event)}>
+              用户名：<input type="text" ref={this.usernameRef} name="用户名" />
+              密码：<input ref={this.passwordRef} type="password" name="密码" />
+              <button type="text">登陆</button>
+            </form>
+          </>
           );
         }
       }
