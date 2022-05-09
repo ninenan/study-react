@@ -1,13 +1,13 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>非受控组件</title>
+    <title>受控组件</title>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
     <!-- Don't use this in production: -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <!-- development version -->
+    <!-- development version  -->
     <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
     <style>
       .title {
@@ -22,31 +22,51 @@
   <body>
     <div id="root"></div>
     <script type="text/babel">
-      // 非受控组件 现用现取
+      // 简单理解就是 Vue 的 vmodel 非受控组件和受控组件都能完成需求的话，建议使用 受控组件（不会创建很多的 ref）
       const container = document.getElementById("root");
       const root = ReactDOM.createRoot(container);
 
       class MyComponent extends React.Component {
-        usernameRef = React.createRef();
-        passwordRef = React.createRef();
+        state = {
+          username: "",
+          password: "",
+        };
 
-        handleSubmit(event) {
+        handleSubmit() {
           event.preventDefault(); // 组织默认事件
-          const { usernameRef, passwordRef } = this;
+          const { username, password } = this.state;
 
-          alert(
-            `用户名：${usernameRef.current.value},密码：${passwordRef.current.value}`
-          );
+          alert(`用户名：${username},密码：${password}`);
+        }
+
+        setPassowrd(event) {
+          this.setState({
+            password: event.target.value,
+          });
+        }
+
+        setUsername(event) {
+          this.setState({
+            username: event.target.value,
+          });
         }
 
         render() {
           return (
             <>
-              <form onSubmit={(event) => this.handleSubmit(event)}>
+              <form onSubmit={() => this.handleSubmit()}>
                 用户名：
-                <input type="text" ref={this.usernameRef} name="用户名" />
+                <input
+                  type="text"
+                  onChange={(e) => this.setUsername(e)}
+                  name="用户名"
+                />
                 密码：
-                <input ref={this.passwordRef} type="password" name="密码" />
+                <input
+                  type="password"
+                  onChange={(e) => this.setPassowrd(e)}
+                  name="密码"
+                />
                 <button type="text">登陆</button>
               </form>
             </>

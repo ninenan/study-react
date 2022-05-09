@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>生命周期</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- development version  -->
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+    <style>
+      .title {
+        color: burlywood;
+      }
+      input,
+      button {
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+
+      class MyComponent extends React.Component {
+        state = {
+          opacity: 1,
+        };
+        // 去除组件
+        removeComponent() {
+          // 方式1 
+          // 去除组件的时候手动去除定时器
+          clearInterval(this.timer)
+          root.unmount();
+        }
+
+        componentDidMount() {
+          this.timer = setInterval(() => {
+            let { opacity } = this.state;
+            opacity -= 0.1
+
+            if (opacity <= 0) {
+              opacity = 1;
+            }
+
+            this.setState({ opacity });
+          }, 200);
+        }
+        // 方式2
+        // 组件将要被卸载的时候触发的钩子
+        componentwillUnMount() {
+          clearInterval(this.timer)
+        }
+
+        // 初始化渲染、状态更新之后
+        render() {
+          const { opacity } = this.state;
+          return (
+            <>
+              <h4 style={{ opacity: opacity }}>react 标题～～～～～～～～</h4>
+              <button onClick={() => this.removeComponent()}>去除组件</button>
+            </>
+          );
+        }
+      }
+
+      root.render(<MyComponent />);
+    </script>
+  </body>
+</html>
