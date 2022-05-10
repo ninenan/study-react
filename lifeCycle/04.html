@@ -25,13 +25,35 @@
       const container = document.getElementById("root");
       const root = ReactDOM.createRoot(container);
 
-      class MyComponent extends React.Component {
-        constructor(props) {
-          console.log("constructor");
-          super(props);
-          this.state = {
-            count: 0,
-          };
+      class Father extends React.Component {
+        
+        state = {
+          count: 0
+        }
+
+        setCount() {
+          const { count } = this.state
+
+          this.setState({
+            count: count + 1
+          })
+        }
+        render() {
+          const { count } = this.state
+          return (
+            <>
+            <button onClick={() => this.setCount()}>count++</button>
+              <Son count={count}></Son>
+            </>
+          )
+        }
+      }
+
+
+      class Son extends React.Component {
+        // 组件将要接受新的 props
+        componentWillReceiveProps(props) {
+          console.log('componentWillReceiveProps: ', props)
         }
         // 组件将要挂载（被删除了）
         componentWillMount() {
@@ -48,7 +70,7 @@
         // 控制组件是否可以更新
         shouldComponentUpdate() {
           console.log("shouldComponentUpdate");
-          return false;
+          return true;
         }
         // 组件将要更新（被删除了）
         componentWillUpdate() {
@@ -59,37 +81,19 @@
           console.log("componentDidUpdate");
         }
 
-        // 不改变数据强制更新组件
-        force() {
-          this.forceUpdate();
-        }
-        removeCom() {
-          root.unmount();
-        }
-        setCount() {
-          const { count } = this.state;
-          this.setState({
-            count: count + 1,
-          });
-        }
         // 初始化渲染、状态更新之后
         render() {
-          const { count } = this.state;
+          const { count } = this.props;
           console.log("render");
           return (
             <>
               <h4>count: {count}</h4>
-              <button onClick={() => this.setCount()}>+1</button>
-              <button onClick={() => this.removeCom()}>删除组件</button>
-              <button onClick={() => this.force()}>
-                不改变数据强制更新组件
-              </button>
             </>
           );
         }
       }
 
-      root.render(<MyComponent />);
+      root.render(<Father />);
     </script>
   </body>
 </html>
