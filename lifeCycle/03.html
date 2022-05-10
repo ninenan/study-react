@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>生命周期</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- development version  -->
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+    <style>
+      .title {
+        color: burlywood;
+      }
+      input,
+      button {
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+
+      class MyComponent extends React.Component {
+        constructor(props) {
+          console.log("constructor");
+          super(props);
+          this.state = {
+            count: 0,
+          };
+        }
+        // 组件将要挂载 （被删除了）
+        componentWillMount() {
+          console.log("componentWillMount");
+        }
+        // 组件挂载完毕
+        componentDidMount() {
+          console.log("componentDidMount");
+        }
+        // 组件将要被卸载的时候触发的钩子
+        componentWillUnmount() {
+          console.log("componentWillUnmount");
+        }
+        // 控制组件是否可以更新
+        shouldComponentUpdate() {
+          console.log("shouldComponentUpdate");
+          return false;
+        }
+        // 组件将要更新（被删除了）
+        componentWillUpdate() {
+          console.log("componentWillUpdate");
+        }
+        // 组件更新完毕
+        componentDidUpdate() {
+          console.log("componentDidUpdate");
+        }
+
+        // 不改变数据强制更新组件
+        force() {
+          this.forceUpdate();
+        }
+        removeCom() {
+          root.unmount();
+        }
+        setCount() {
+          const { count } = this.state;
+          this.setState({
+            count: count + 1,
+          });
+        }
+        // 初始化渲染、状态更新之后
+        render() {
+          const { count } = this.state;
+          console.log("render");
+          return (
+            <>
+              <h4>count: {count}</h4>
+              <button onClick={() => this.setCount()}>+1</button>
+              <button onClick={() => this.removeCom()}>删除组件</button>
+              <button onClick={() => this.force()}>
+                不改变数据强制更新组件
+              </button>
+            </>
+          );
+        }
+      }
+
+      root.render(<MyComponent />);
+    </script>
+  </body>
+</html>

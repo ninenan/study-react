@@ -37,6 +37,7 @@
           root.unmount();
         }
 
+        // 组件挂在完毕
         componentDidMount() {
           this.timer = setInterval(() => {
             let { opacity } = this.state;
@@ -51,7 +52,7 @@
         }
         // 方式2
         // 组件将要被卸载的时候触发的钩子
-        componentwillUnMount() {
+        componentwillUnmount() {
           clearInterval(this.timer)
         }
 
