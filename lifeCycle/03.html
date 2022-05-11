@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>生命周期</title>
+    <title>旧的生命周期</title>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
@@ -37,11 +37,11 @@
         componentWillMount() {
           console.log("componentWillMount");
         }
-        // 组件挂载完毕
+        // 组件挂载完毕（常用 初始化 开启定时器 网络请求 订阅消息）
         componentDidMount() {
           console.log("componentDidMount");
         }
-        // 组件将要被卸载的时候触发的钩子
+        // 组件将要被卸载的时候触发的钩子（常用 关闭定时器 取消订阅）
         componentWillUnmount() {
           console.log("componentWillUnmount");
         }
@@ -72,7 +72,7 @@
             count: count + 1,
           });
         }
-        // 初始化渲染、状态更新之后
+        // 初始化渲染、状态更新之后（必须）
         render() {
           const { count } = this.state;
           console.log("render");
