@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>旧的生命周期</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- development version  -->
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+    <style>
+      .new-item {
+        height: 30px;
+        color: black;
+      }
+
+      .new-container {
+        height: 150px;
+        width: 200px;
+        background-color: blueviolet;
+        overflow: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+
+      class MyComponent extends React.Component {
+        state = {
+          newList: [],
+        };
+        containerRef = React.createRef();
+
+        componentDidMount() {
+          setInterval(() => {
+            const { newList } = this.state;
+            const newItem = `新闻${newList.length + 1}`;
+
+            this.setState({
+              newList: [newItem, ...newList],
+            });
+          }, 1_000);
+        }
+
+        getSnapshotBeforeUpdate() {
+          return this.containerRef.current.scrollHeight;
+        }
+
+        componentDidUpdate(preProps, preState, height) {
+          this.containerRef.current.scrollTop +=
+            this.containerRef.current.scrollHeight - height;
+        }
+
+        render() {
+          const { newList } = this.state;
+
+          return (
+            <div className="new-container" ref={this.containerRef}>
+              {newList.map((newItem) => {
+                return (
+                  <div key={newItem} className="new-item">
+                    {newItem}
+                  </div>
+                );
+              })}
+            </div>
+          );
+        }
+      }
+
+      root.render(<MyComponent />);
+    </script>
+  </body>
+</html>

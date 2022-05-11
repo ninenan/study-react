@@ -26,35 +26,33 @@
       const root = ReactDOM.createRoot(container);
 
       class Father extends React.Component {
-        
         state = {
-          count: 0
-        }
+          count: 0,
+        };
 
         setCount() {
-          const { count } = this.state
+          const { count } = this.state;
 
           this.setState({
-            count: count + 1
-          })
+            count: count + 1,
+          });
         }
 
         render() {
-          const { count } = this.state
+          const { count } = this.state;
           return (
             <>
-            <button onClick={() => this.setCount()}>count++</button>
+              <button onClick={() => this.setCount()}>count++</button>
               <Son count={count}></Son>
             </>
-          )
+          );
         }
       }
-
 
       class Son extends React.Component {
         // 组件将要接受新的 props
         componentWillReceiveProps(props) {
-          console.log('componentWillReceiveProps: ', props)
+          console.log("componentWillReceiveProps: ", props);
         }
         // 组件将要挂载（被删除了）
         componentWillMount() {
