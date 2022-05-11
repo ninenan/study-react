@@ -60,9 +60,9 @@
 
           return (
             <div className="new-container" ref={this.containerRef}>
-              {newList.map((newItem) => {
+              {newList.map((newItem, index) => {
                 return (
-                  <div key={newItem} className="new-item">
+                  <div key={index} className="new-item">
                     {newItem}
                   </div>
                 );
