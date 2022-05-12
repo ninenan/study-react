@@ -50,6 +50,7 @@
           return this.containerRef.current.scrollHeight;
         }
 
+        // height 是 getSnapshotBeforeUpdate 返回的值
         componentDidUpdate(preProps, preState, height) {
           this.containerRef.current.scrollTop +=
             this.containerRef.current.scrollHeight - height;
