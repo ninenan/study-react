@@ -1,0 +1,23 @@
+button {
+  background-color: red;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 20px;
+  display: none;
+}
+
+li {
+  text-align: left;
+  list-style: none;
+}
+
+li:hover button {
+    display: block;
+}
+
+label {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
