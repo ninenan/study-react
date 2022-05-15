@@ -1,11 +1,11 @@
 .footer button {
   background-color: red;
   color: #ffffff;
-  border: none;
+  opacity: 0;
   border-radius: 5px;
   padding: 5px 10px;
-  display: none;
   cursor: pointer;
+  border: none;
 }
 
 label {
@@ -14,12 +14,22 @@ label {
   cursor: pointer;
 }
 
+label > div {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+label > div > span {
+  margin-left: 10px;
+}
+
 .footer {
   margin-top: 10px;
-  font-size: 20px;
+  height: 30px;
 }
 
 .footer:hover button {
-    display: block;
+  opacity: 1;
 }
 

@@ -46,11 +46,13 @@ function Home() {
   }
 
   return (
-    <div>
-      <div className={styles['p-home']}>Home Page</div>
+    <div className={styles['p-home-container']}>
+      <div className={styles['p-home-title']}>
+        Home Page
+      </div>
       <div className='container'>
         <Header addList={addList} list={list} />
-        <List list={list} changeList={changeList} removeItem={removeItem}/>
+        <List list={list} changeList={changeList} removeItem={removeItem} />
         <Footer list={list} resetList={resetList} removeList={removeList} handleCheckAll={handleCheckAll} />
       </div>
     </div>
