@@ -1,19 +1,26 @@
-button {
+.item button {
+  display: none;
   background-color: red;
   color: #ffffff;
   border: none;
   border-radius: 5px;
-  padding: 5px 20px;
-  display: none;
+  padding: 5px 10px;
+  font-size: 14px;
+  height: 30px;
+  cursor: pointer;
 }
 
 li {
   text-align: left;
   list-style: none;
+  line-height: 40px;
+  padding: 5px 10px;
+  height: 40px;
+  box-sizing: border-box;
 }
 
 li:hover button {
-    display: block;
+  display: block;
 }
 
 label {

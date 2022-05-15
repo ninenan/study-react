@@ -1,7 +1,9 @@
 .list {
   border: 1px solid #cccccc;
   border-radius: 5px;
-  min-height: 100px;
+  min-height: 160px;
   width: 400px;
+  padding-left: 0;
+  overflow: auto;
 }
 
