@@ -1,6 +1,6 @@
 import { Link, Route } from "react-router-dom";
-import Home from './views/Home/index'
-import Test from './views/Test/index'
+import Home from './views/Home/index' // 路由组件
+import Test from './views/Test/index' // 路由组件
 import './App.css';
 import './style/reset.css';
 
