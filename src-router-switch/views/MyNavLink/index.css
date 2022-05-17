@@ -1,0 +1,19 @@
+.span-a {
+  display: block;
+  background-color: rgb(24, 144, 255);
+  padding: 4px 15px;
+  color: #ffffff;
+  line-height: 22px;
+}
+
+.span--active {
+  color: #ffffff;
+  background-color: red;
+
+}
+
+.span-a:active {
+  color: red;
+  background-color: #f0f0f0;
+  transition: all ease-in-out .1s;
+}
