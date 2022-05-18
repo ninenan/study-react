@@ -1,0 +1,10 @@
+.message-container a, li {
+  color: #18191c;
+  line-height: 22px;
+  cursor: pointer;
+}
+.message-container {
+  background-color: rgb(241, 242, 243);
+  border-radius: 6px;
+  padding: 14px 16px;
+}
