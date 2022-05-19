@@ -31,6 +31,14 @@ export default function Message(props) {
     })
   }
 
+  const goBack = () => {
+    props.history.goBack()
+  }
+
+  const goForward = () => {
+    props.history.goForward()
+  }
+
 
   return (
     <div className="message-container">
@@ -54,6 +62,8 @@ export default function Message(props) {
         }
         <li onClick={() => toDetailByPush('4', 'message4')}>push 跳转</li>
         <li onClick={() => toDetailByReplace('5', 'message5')}>replace 跳转</li>
+        <li onClick={() => goBack()}>go 跳转</li>
+        <li onClick={() => goForward()}>forward 跳转</li>
       </ul>
       <Route path="/home/message/detail" component={Detail} />
     </div>
