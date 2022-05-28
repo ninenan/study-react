@@ -1,0 +1,21 @@
+.user__container, .son__container, .grandson__container{ 
+  padding: 8px;
+}
+
+.user__container { 
+  border:1px solid black;
+}
+
+.son__container {
+  background-color: blue;
+}
+
+.grandson__container {
+  margin-top: 10px;
+  background-color: #437B95;
+}
+
+h2 {
+  font-size: 20px;
+  line-height: 32px;
+}
