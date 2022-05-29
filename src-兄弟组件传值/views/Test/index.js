@@ -18,14 +18,14 @@ export default class Test extends React.Component {
     this.token = PubSub.subscribe('changeData', (_, data) => {
       const { gun, count } = data
       this.setState({
-        gun: gun,
+        gun,
         count
       })
     })
   }
 
   componentWillUnmount() {
-    PubSub.unsubscribe(this.token) //记得清除
+    PubSub.unsubscribe(this.token) // 记得清除
   }
 
   render() {
