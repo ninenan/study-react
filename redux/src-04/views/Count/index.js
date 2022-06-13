@@ -25,7 +25,6 @@ export default () => {
   }
 
   const incrementAsync = async () => {
-
     const res = await dispatch(createIncrementActionAsync(+selectRef.current.value, 1_000))
     console.log(res)
   }

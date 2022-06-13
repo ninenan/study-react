@@ -12,7 +12,7 @@ function App() {
         <div className='app-container'>
           <div>
             <NavLink activeClassName="span--active" className='span-a' to="/home">Home</NavLink>
-            <NavLink activeClassName="span--active"className='span-a' to="/test">Test</NavLink>
+            <NavLink activeClassName="span--active" className='span-a' to="/test">Test</NavLink>
           </div>
           <article style={{ marginLeft: '10px' }}>
             我是自路由组件中的内容
